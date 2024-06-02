@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - spring-boot-app
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: spring_boot_app
+    ports:
+      - "3306:3306"
+    networks:
+      - spring-boot-app
+networks:
+  spring-boot-app:
